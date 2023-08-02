@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":["CoinReadApi","CoinReadInternalImpl"],"trait":["CoinReadInternal","State"]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["charge_input_as_memory","cost_table_for_version","dont_charge_budget_on_storage_oog","gas_price_too_high","txn_base_cost_as_multiplier"]};

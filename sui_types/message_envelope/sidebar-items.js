@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["get_google_jwk_bytes"],"static":["GOOGLE_JWK_BYTES"],"struct":["Envelope","TrustedEnvelope","VerifiedEnvelope"],"trait":["AuthenticatedMessage","Message","UnauthenticatedMessage"]};

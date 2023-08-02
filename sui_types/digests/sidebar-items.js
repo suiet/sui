@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["get_mainnet_chain_identifier","get_testnet_chain_identifier"],"static":["MAINNET_CHAIN_IDENTIFIER","TESTNET_CHAIN_IDENTIFIER"],"struct":["CertificateDigest","ChainIdentifier","CheckpointContentsDigest","CheckpointDigest","Digest","ObjectDigest","SenderSignedDataDigest","TransactionDigest","TransactionEffectsDigest","TransactionEventsDigest"]};
