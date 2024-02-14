@@ -137,6 +137,7 @@ impl IndexerApiServer for IndexerApiV2 {
             .await
     }
 
+    #[tracing::instrument(level = "info", skip_all)]
     async fn query_transaction_blocks(
         &self,
         query: SuiTransactionBlockResponseQuery,

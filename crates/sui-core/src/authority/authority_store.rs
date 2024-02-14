@@ -286,6 +286,7 @@ impl AuthorityStore {
         self.perpetual_tables.get_recovery_epoch_at_restart()
     }
 
+    #[tracing::instrument(level = "info", skip_all)]
     pub fn get_effects(
         &self,
         effects_digest: &TransactionEffectsDigest,
@@ -301,6 +302,7 @@ impl AuthorityStore {
             .map_err(|e| e.into())
     }
 
+    #[tracing::instrument(level = "info", skip_all)]
     pub fn get_events(
         &self,
         event_digest: &TransactionEventsDigest,
@@ -314,6 +316,7 @@ impl AuthorityStore {
         Ok(data.is_empty().not().then_some(TransactionEvents { data }))
     }
 
+    #[tracing::instrument(level = "info", skip_all)]
     pub fn multi_get_events(
         &self,
         event_digests: &[TransactionEventsDigest],
@@ -324,6 +327,7 @@ impl AuthorityStore {
             .collect::<Result<Vec<_>, _>>()?)
     }
 
+    #[tracing::instrument(level = "info", skip_all)]
     pub fn multi_get_effects<'a>(
         &self,
         effects_digests: impl Iterator<Item = &'a TransactionEffectsDigest>,
@@ -331,6 +335,7 @@ impl AuthorityStore {
         Ok(self.perpetual_tables.effects.multi_get(effects_digests)?)
     }
 
+    #[tracing::instrument(level = "info", skip_all)]
     pub fn get_executed_effects(
         &self,
         tx_digest: &TransactionDigest,
@@ -344,6 +349,7 @@ impl AuthorityStore {
 
     /// Given a list of transaction digests, returns a list of the corresponding effects only if they have been
     /// executed. For transactions that have not been executed, None is returned.
+    #[tracing::instrument(level = "info", skip_all)]
     pub fn multi_get_executed_effects_digests(
         &self,
         digests: &[TransactionDigest],
@@ -353,6 +359,7 @@ impl AuthorityStore {
 
     /// Given a list of transaction digests, returns a list of the corresponding effects only if they have been
     /// executed. For transactions that have not been executed, None is returned.
+    #[tracing::instrument(level = "info", skip_all)]
     pub fn multi_get_executed_effects(
         &self,
         digests: &[TransactionDigest],
@@ -512,6 +519,7 @@ impl AuthorityStore {
             .collect())
     }
 
+    #[tracing::instrument(level = "info", skip_all)]
     pub fn get_object_ref_prior_to_key(
         &self,
         object_id: &ObjectID,
@@ -536,6 +544,7 @@ impl AuthorityStore {
         Ok(None)
     }
 
+    #[tracing::instrument(level = "info", skip_all)]
     pub fn multi_get_object_by_key(
         &self,
         object_keys: &[ObjectKey],
@@ -557,6 +566,7 @@ impl AuthorityStore {
     }
 
     /// Get many objects
+    #[tracing::instrument(level = "info", skip_all)]
     pub fn get_objects(&self, objects: &[ObjectID]) -> Result<Vec<Option<Object>>, SuiError> {
         let mut result = Vec::new();
         for id in objects {
@@ -1318,6 +1328,7 @@ impl AuthorityStore {
     /// being wrapped in another object.
     ///
     /// If no entry for the object_id is found, return None.
+    #[tracing::instrument(level = "info", skip_all)]
     pub fn get_latest_object_ref_or_tombstone(
         &self,
         object_id: ObjectID,
@@ -1328,6 +1339,7 @@ impl AuthorityStore {
 
     /// Returns the latest object reference if and only if the object is still live (i.e. it does
     /// not return tombstones)
+    #[tracing::instrument(level = "info", skip_all)]
     pub fn get_latest_object_ref_if_alive(
         &self,
         object_id: ObjectID,
@@ -1341,6 +1353,7 @@ impl AuthorityStore {
     /// Returns the latest object we have for this object_id in the objects table.
     ///
     /// If no entry for the object_id is found, return None.
+    #[tracing::instrument(level = "info", skip_all)]
     pub fn get_latest_object_or_tombstone(
         &self,
         object_id: ObjectID,
@@ -1408,6 +1421,7 @@ impl AuthorityStore {
         Ok(())
     }
 
+    #[tracing::instrument(level = "info", skip_all)]
     pub fn multi_get_transaction_blocks(
         &self,
         tx_digests: &[TransactionDigest],
@@ -1419,6 +1433,7 @@ impl AuthorityStore {
             .map(|v| v.into_iter().map(|v| v.map(|v| v.into())).collect())?)
     }
 
+    #[tracing::instrument(level = "info", skip_all)]
     pub fn get_transaction_block(
         &self,
         tx_digest: &TransactionDigest,
@@ -1690,6 +1705,7 @@ impl AuthorityStore {
 
 impl ObjectStore for AuthorityStore {
     /// Read an object and return it, or Ok(None) if the object was not found.
+    #[tracing::instrument(level = "info", skip_all)]
     fn get_object(
         &self,
         object_id: &ObjectID,
@@ -1697,6 +1713,7 @@ impl ObjectStore for AuthorityStore {
         self.perpetual_tables.as_ref().get_object(object_id)
     }
 
+    #[tracing::instrument(level = "info", skip_all)]
     fn get_object_by_key(
         &self,
         object_id: &ObjectID,

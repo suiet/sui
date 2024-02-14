@@ -790,6 +790,7 @@ impl IndexerReader {
         .await
     }
 
+    #[tracing::instrument(level = "info", skip_all)]
     fn query_transaction_blocks_impl(
         &self,
         filter: Option<TransactionFilter>,
